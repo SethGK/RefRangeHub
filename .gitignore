@@ -1,0 +1,58 @@
+# Alembic config file with sensitive data
+alembic.ini
+
+# Python Bytecode Files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Environment Variables file
+.env
+
+# Virtual Environment directory
+venv/
+env/
+
+# Docker files
+*.dockerignore
+Dockerfile
+
+# Python IDE files (VSCode, PyCharm, etc.)
+.vscode/
+.idea/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Python distribution files
+dist/
+build/
+*.egg-info
+
+# Miscellaneous
+*.swp  # Vim swap files
+*.swo  # Vim swap files
+
+# Flask instance folder
+instance/
+
+# Flask settings for local server
+*.env  # Ignore environment-specific files (e.g., local.env, .flaskenv)
+
+# pytest configuration files
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.hypothesis/
+
+# Docker Compose override file (if applicable)
+docker-compose.override.yml
+
+# PyInstaller
+*.spec
