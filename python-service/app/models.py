@@ -58,6 +58,6 @@ class Study(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String(255), nullable=False)
     authors = Column(String(500))
-    publication_date = Column(DateTime)  # Use DateTime here instead of Date
+    publication_date = Column(DateTime)
 
     reference_ranges = relationship('ReferenceRange', back_populates='study')
