@@ -21,9 +21,8 @@ func RunMigrations() {
 		log.Fatalf("Error creating database driver: %v", err)
 	}
 
-	// Create the migration instance (No need for `file.New`)
 	m, err := migrate.NewWithDatabaseInstance(
-		"file://internal/db/migrations", // Ensure the path is correct
+		"file://internal/db/migrations",
 		"postgres", driver,
 	)
 	if err != nil {
