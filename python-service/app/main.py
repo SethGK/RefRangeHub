@@ -5,7 +5,9 @@ from flask_migrate import Migrate
 from app.config import SECRET_KEY, DEBUG, SQLALCHEMY_DATABASE_URI
 from app.auth_routes import auth_bp
 from app.routes import test_bp
+from app.database import create_db
 
+create_db()
 db = SQLAlchemy()
 migrate = Migrate()
 

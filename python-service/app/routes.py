@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from app.models import ReferenceRange
+from app.models import ReferenceRange, Department
 from app.database import SessionLocal
 from app.schemas import ReferenceRangeSchema
 from marshmallow import ValidationError
@@ -135,3 +135,34 @@ def get_tests_by_department(dept_id):
         return jsonify({"error": str(e)}), 400
     finally:
         session.close()
+
+@test_bp.route('/departments', methods=['POST'])
+@jwt_required()
+def create_department():
+    session = SessionLocal()
+    user_id = get_jwt_identity()
+    
+    try:
+        json_data = request.get_json()
+        department_name = json_data.get("name")
+        department_description = json_data.get("description", "")
+        
+        if not department_name:
+            return jsonify({"error": "Department name is required"}), 400
+        
+        new_department = Department(
+            name=department_name,
+            description=department_description
+        )
+        
+        session.add(new_department)
+        session.commit()
+        
+        return jsonify({"message": "Department created", "id": new_department.id}), 201
+    
+    except Exception as e:
+        session.rollback()
+        return jsonify({"error": str(e)}), 400
+    finally:
+        session.close()
+
